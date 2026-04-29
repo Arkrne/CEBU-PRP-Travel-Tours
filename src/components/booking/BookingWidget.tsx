@@ -5,9 +5,7 @@ import { MapPin, Calendar, Users, ArrowRight, Briefcase, Plane, CreditCard, Wall
 const BookingWidget = () => {
   const [step, setStep] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('');
-  const [statusMessage, setStatusMessage] = useState('');
-
-  const paymentLinkUrl = import.meta.env.VITE_CARD_PAYMENT_URL as string | undefined;
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const steps = [
     { icon: <MapPin size={18} />, label: "Destination" },
@@ -17,31 +15,46 @@ const BookingWidget = () => {
   ];
 
   const paymentOptions = [
-    { id: 'card', name: 'Credit / Debit Card', icon: <CreditCard size={20} />, sub: 'Via hosted secure checkout' },
+    { id: 'card', name: 'Credit / Debit Card', icon: <CreditCard size={20} />, sub: 'Via PayPal Secure Link' },
     { id: 'gcash', name: 'GCash', icon: <Smartphone size={20} />, sub: 'Direct e-Wallet Transfer' },
     { id: 'maya', name: 'Maya', icon: <Wallet size={20} />, sub: 'Digital Bank Payment' },
     { id: 'qr', name: 'QR Ph', icon: <Smartphone size={20} />, sub: 'Scan to Pay' }
   ];
 
-  const handleFinalize = () => {
+  const handleNext = () => {
     if (step < 3) {
       setStep(step + 1);
-      return;
+    } else {
+      setIsCompleted(true);
     }
-
-    if (paymentMethod !== 'card') {
-      setStatusMessage('Booking request saved. Please complete payment through your selected method.');
-      return;
-    }
-
-    if (!paymentLinkUrl) {
-      setStatusMessage('Set VITE_CARD_PAYMENT_URL to your secure checkout link to accept card payments.');
-      return;
-    }
-
-    setStatusMessage('Redirecting to secure card checkout...');
-    window.location.assign(paymentLinkUrl);
   };
+
+  if (isCompleted) {
+    return (
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="relative bg-brand-navy/90 backdrop-blur-3xl p-12 rounded-[30px] border border-brand-gold/30 shadow-2xl text-center space-y-8"
+      >
+        <div className="w-20 h-20 bg-brand-gold rounded-full flex items-center justify-center mx-auto shadow-[0_0_40px_rgba(212,175,55,0.4)]">
+           <ShieldCheck size={40} className="text-brand-navy" />
+        </div>
+        <div>
+          <h3 className="text-3xl font-black text-white italic tracking-tighter mb-4 uppercase">Booking Confirmed</h3>
+          <p className="text-white/40 text-sm leading-relaxed uppercase tracking-widest">
+            Your request has been sent to our Cebu team. <br />
+            We will contact you via WhatsApp for final confirmation.
+          </p>
+        </div>
+        <button 
+          onClick={() => { setStep(0); setIsCompleted(false); }}
+          className="px-10 py-4 border border-brand-gold text-brand-gold font-bold text-[10px] tracking-widest uppercase hover:bg-brand-gold hover:text-brand-navy transition-all"
+        >
+          Book Another Trip
+        </button>
+      </motion.div>
+    );
+  }
 
   return (
     <div className="relative group">
@@ -139,40 +152,26 @@ const BookingWidget = () => {
                 </div>
               )}
               {step === 3 && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-3">
-                    {paymentOptions.map((opt) => (
-                      <button
-                        key={opt.id}
-                        onClick={() => setPaymentMethod(opt.id)}
-                        className={`flex items-center gap-4 p-4 rounded-xl border transition-all text-left ${
-                          paymentMethod === opt.id
-                            ? 'bg-brand-gold/10 border-brand-gold text-white shadow-[0_0_15px_rgba(212,175,55,0.1)]'
-                            : 'bg-white/5 border-white/10 text-white/40 hover:border-white/20'
-                        }`}
-                      >
-                        <div className={`${paymentMethod === opt.id ? 'text-brand-gold' : 'text-white/20'}`}>
-                          {opt.icon}
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-black uppercase tracking-widest">{opt.name}</p>
-                          <p className="text-[8px] opacity-60 uppercase tracking-tighter">{opt.sub}</p>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-
-                  {paymentMethod === 'card' && (
-                    <div className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-4 text-sm text-white/70">
-                      <div className="flex items-center gap-2 text-brand-gold mb-2">
-                        <ShieldCheck size={14} />
-                        <span className="text-[10px] font-black uppercase tracking-widest">Secure Card Checkout</span>
+                <div className="grid grid-cols-1 gap-3">
+                  {paymentOptions.map((opt) => (
+                    <button
+                      key={opt.id}
+                      onClick={() => setPaymentMethod(opt.id)}
+                      className={`flex items-center gap-4 p-4 rounded-xl border transition-all text-left ${
+                        paymentMethod === opt.id 
+                          ? 'bg-brand-gold/10 border-brand-gold text-white shadow-[0_0_15px_rgba(212,175,55,0.1)]' 
+                          : 'bg-white/5 border-white/10 text-white/40 hover:border-white/20'
+                      }`}
+                    >
+                      <div className={`${paymentMethod === opt.id ? 'text-brand-gold' : 'text-white/20'}`}>
+                        {opt.icon}
                       </div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 leading-relaxed">
-                        We redirect to a PCI-compliant checkout page for credit and debit cards. Add your hosted payment link in VITE_CARD_PAYMENT_URL.
-                      </p>
-                    </div>
-                  )}
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest">{opt.name}</p>
+                        <p className="text-[8px] opacity-60 uppercase tracking-tighter">{opt.sub}</p>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
@@ -187,19 +186,13 @@ const BookingWidget = () => {
                 </button>
               )}
               <button 
-                onClick={handleFinalize}
+                onClick={handleNext}
                 className="flex-1 py-5 bg-brand-gold text-brand-navy font-bold rounded-xl hover:bg-white transition-all flex items-center justify-center gap-3 group/btn text-[10px] tracking-widest uppercase"
               >
-                {step === 3 ? (paymentMethod === 'card' ? 'CONTINUE TO SECURE CHECKOUT' : 'FINALIZE BOOKING') : 'NEXT STEP'}
+                {step === 3 ? "FINALIZE BOOKING" : "NEXT STEP"}
                 <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
               </button>
             </div>
-
-            {statusMessage && (
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">
-                {statusMessage}
-              </p>
-            )}
           </motion.div>
         </AnimatePresence>
 

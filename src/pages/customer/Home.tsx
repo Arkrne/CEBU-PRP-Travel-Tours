@@ -4,6 +4,7 @@ import FleetShowcase from '../../components/vfx/FleetShowcase';
 import FeatureGrid from '../../components/vfx/FeatureGrid';
 import ProcessSection from '../../components/vfx/ProcessSection';
 import RateEstimator from '../../components/vfx/RateEstimator';
+import TourPackages from '../../components/vfx/TourPackages';
 
 const Home = () => {
   return (
@@ -99,6 +100,8 @@ const Home = () => {
           <FleetShowcase />
         </div>
       </section>
+
+      <TourPackages />
 
       <RateEstimator />
 
