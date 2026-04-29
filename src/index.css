@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors - Defined for Tailwind 4 */
+  --color-brand-navy: #050b1a;
+  --color-brand-gold: #d4af37;
+  --color-brand-blue: #3b82f6;
+  
+  /* Typography */
+  --font-display: "Inter", system-ui, sans-serif;
+  
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+}
+
+:root {
+  /* Semantic Variables */
+  --bg-primary: #050b1a;
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --accent: #d4af37;
+  
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-cinematic: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  font-family: var(--font-display);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Global Root - Remove fixed width for immersive design */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* High-End Utility Components */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-dark {
+    background: rgba(5, 11, 26, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+}
+
+/* Selection Style */
+::selection {
+  background: #d4af37;
+  color: #050b1a;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050b1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
