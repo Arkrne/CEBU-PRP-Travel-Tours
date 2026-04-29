@@ -9,7 +9,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       
-      <footer id="contact" className="py-20 px-6 md:px-12 border-t border-white/5 mt-20 bg-brand-navy scroll-mt-20">
+      <footer id="contact" className="py-20 px-6 md:px-12 border-t border-white/5 mt-20 bg-brand-navy scroll-mt-32">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-3xl font-black text-brand-gold mb-6 tracking-tighter italic">CEBU PRP TRAVEL & TOURS</h2>

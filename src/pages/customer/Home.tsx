@@ -8,7 +8,7 @@ import TourPackages from '../../components/vfx/TourPackages';
 
 const Home = () => {
   return (
-    <div className="relative min-h-screen pt-20 overflow-hidden bg-brand-navy">
+    <div id="top" className="relative min-h-screen pt-20 overflow-hidden bg-brand-navy">
       {/* Immersive Background Reveal */}
       <motion.div 
         initial={{ scale: 1.1, opacity: 0 }}
@@ -86,7 +86,7 @@ const Home = () => {
       </section>
 
       {/* Fleet Showcase Section */}
-      <section id="fleet" className="relative z-10 py-40 px-6 md:px-12 bg-white/0">
+      <section id="fleet" className="relative z-10 py-40 px-6 md:px-12 bg-white/0 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
             <div>
@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="tours">
+      <section id="tours" className="relative z-10 py-40 px-6 md:px-12 scroll-mt-20">
         <TourPackages />
       </section>
 
