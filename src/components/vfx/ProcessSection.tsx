@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Zap, Clock, Star, MapPin, Calendar, Smartphone } from 'lucide-react';
+import { Shield, Clock, MapPin, Smartphone } from 'lucide-react';
 
 const ProcessSection = () => {
   const steps = [

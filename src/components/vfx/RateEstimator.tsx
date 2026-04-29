@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calculator, Info, ArrowRight } from 'lucide-react';
+import { Calculator, ArrowRight } from 'lucide-react';
 
 const RateEstimator = () => {
   const [distance, setDistance] = useState(25);

@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const PIN_VH_MULTIPLE = 3.2;
-const IMMERSE_OVERFILL = 1.04;
 const ENTRY_DELAY = 0.2;
 const CARD_START_SCALE_DESKTOP = 0.6;
 const CARD_START_SCALE_MOBILE = 0.82;
