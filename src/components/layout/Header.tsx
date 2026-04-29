@@ -29,7 +29,7 @@ const Header = () => {
         <a href="#top" className="hover:text-brand-gold transition-colors">HOME</a>
         <a href="#fleet" className="hover:text-brand-gold transition-colors">FLEET</a>
         <a href="#tours" className="hover:text-brand-gold transition-colors">TOUR PACKAGES</a>
-        <Link to="/contact" className="hover:text-brand-gold transition-colors">CONTACT</Link>
+        <a href="#contact" className="hover:text-brand-gold transition-colors">CONTACT</a>
       </nav>
 
       <div className="flex items-center space-x-8">
@@ -37,12 +37,12 @@ const Header = () => {
            <span className="text-[8px] text-white/30 font-bold uppercase tracking-widest">Book via WhatsApp</span>
            <span className="text-sm text-brand-gold font-black italic">+63 9XX XXX XXXX</span>
         </div>
-        <Link 
-          to="/booking" 
+        <a 
+          href="#booking" 
           className="px-8 py-3 bg-brand-gold text-brand-navy rounded-sm text-[10px] font-black tracking-widest hover:bg-white transition-all shadow-[0_10px_30px_rgba(212,175,55,0.2)]"
         >
           BOOK NOW
-        </Link>
+        </a>
       </div>
     </motion.header>
   );

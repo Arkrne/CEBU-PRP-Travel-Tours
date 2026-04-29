@@ -74,10 +74,11 @@ const Home = () => {
         </div>
 
         <motion.div
+          id="booking"
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 1.3, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative"
+          className="relative scroll-mt-32"
         >
           <div className="absolute -inset-4 bg-brand-blue/10 blur-[100px] rounded-full" />
           <BookingWidget />
