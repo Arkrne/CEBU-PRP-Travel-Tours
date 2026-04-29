@@ -24,6 +24,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Semantic Variables */
   --bg-primary: #050b1a;

@@ -85,7 +85,7 @@ const Home = () => {
       </section>
 
       {/* Fleet Showcase Section */}
-      <section className="relative z-10 py-40 px-6 md:px-12 bg-white/0">
+      <section id="fleet" className="relative z-10 py-40 px-6 md:px-12 bg-white/0">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
             <div>
@@ -96,14 +96,17 @@ const Home = () => {
               From compact sedans for city trips to spacious vans for island-wide tours.
             </div>
           </div>
-          
+
           <FleetShowcase />
         </div>
       </section>
 
-      <TourPackages />
+      <section id="tours">
+        <TourPackages />
+      </section>
 
       <RateEstimator />
+
 
       <ProcessSection />
       

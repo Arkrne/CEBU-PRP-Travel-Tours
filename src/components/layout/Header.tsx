@@ -26,9 +26,9 @@ const Header = () => {
       </Link>
       
       <nav className="hidden lg:flex space-x-10 text-[10px] font-black tracking-[0.3em] text-white/60">
-        <Link to="/" className="hover:text-brand-gold transition-colors">HOME</Link>
-        <Link to="/fleet" className="hover:text-brand-gold transition-colors">FLEET</Link>
-        <Link to="/tours" className="hover:text-brand-gold transition-colors">TOUR PACKAGES</Link>
+        <a href="#top" className="hover:text-brand-gold transition-colors">HOME</a>
+        <a href="#fleet" className="hover:text-brand-gold transition-colors">FLEET</a>
+        <a href="#tours" className="hover:text-brand-gold transition-colors">TOUR PACKAGES</a>
         <Link to="/contact" className="hover:text-brand-gold transition-colors">CONTACT</Link>
       </nav>
 
