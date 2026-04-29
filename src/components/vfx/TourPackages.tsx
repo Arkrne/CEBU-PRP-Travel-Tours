@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, Clock, Users, ArrowRight, Map } from 'lucide-react';
+import { Star, ArrowRight, Map } from 'lucide-react';
 
 const TourPackages = () => {
   const tours = [
